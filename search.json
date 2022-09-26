@@ -16,7 +16,11 @@
   {
     "objectID": "bar_hor.html",
     "href": "bar_hor.html",
+<<<<<<< HEAD
     "title": "2  Horizontal bar plot for variable importance",
+=======
+    "title": "2  Bubble plot for ranks",
+>>>>>>> 49f79f8cc23606347bcdc06fca20e982fcfdcefb
     "section": "",
     "text": "data(df_compas_shapley_vic, package = \"ShapleyVIC\")\nhead(df_compas_shapley_vic)\n\n  model_id                 var_names sage_value_unadjusted      sage_sd\n1        1                       Age          0.0026693517 0.0003409647\n2        1                      Race         -0.0015550084 0.0004302082\n3        1    Prior criminal history          0.0148514285 0.0004843732\n4        1                    Gender         -0.0022936187 0.0003539186\n5        1 Juvenile criminal history          0.0171023134 0.0004201479\n6        1            Current charge         -0.0009106555 0.0002120055\n  shapley_vic_val perf_metric\n1    0.0026693517    1.003292\n2   -0.0015550084    1.003292\n3    0.0148514285    1.003292\n4   -0.0022936187    1.003292\n5    0.0171023134    1.003292\n6   -0.0009106555    1.003292\n\nlibrary(magrittr)\nlibrary(ggplot2)\ndf_bars <- df_compas_shapley_vic %$% ShapleyVIC::summarise_shapley_vic(\n  val = shapley_vic_val, val_sd = sage_sd, var_names = var_names\n)\ndf_bars %$% Figures::draw_bars(\n  val = val, var_names = Variable, x_lab = \"ShapleyVIC values\"\n) + theme(text = element_text(size = 14))"
   }
