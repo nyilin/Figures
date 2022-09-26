@@ -1,0 +1,22 @@
+# Bubble plot for ranks
+
+This chapter demonstrates how to make horizontal bar plot to visualize variable
+importance, possibly with uncertainty intervals. Similar to 
+`ShapleyVIC::draw_bars()`, but now with flexible x-axis title.
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(fig.width = 6, fig.height = 6)
+```
+
+```{r}
+data(df_compas_shapley_vic, package = "ShapleyVIC")
+head(df_compas_shapley_vic)
+library(magrittr)
+library(ggplot2)
+df_bars <- df_compas_shapley_vic %$% ShapleyVIC::summarise_shapley_vic(
+  val = shapley_vic_val, val_sd = sage_sd, var_names = var_names
+)
+df_bars %$% Figures::draw_bars(
+  val = val, var_names = Variable, x_lab = "ShapleyVIC values"
+) + theme(text = element_text(size = 14))
+```
