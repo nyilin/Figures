@@ -1,3 +1,13 @@
+# Bubble plot for ranks
+
+This chapter demonstrates how to make bubble plot to visualize ranks, possibly 
+with modified font to indicate significance.
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(fig.width = 10, fig.height = 10)
+```
+
+```{r}
 library(Figures)
 data(df_rank)
 head(df_rank)
@@ -14,3 +24,4 @@ bubble_for_rank(data = df_rank,
                 x_order = c("Logistic", "Linear XGBoost (loss-based)",
                             "Linear XGBoost (AUC-based)", "Linear SVM"),
                 vline_at = 1.5)
+```

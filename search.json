@@ -1,0 +1,23 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "A Repository of Publication-Ready Figures",
+    "section": "",
+    "text": "A Repository of Publication-Ready Figures."
+  },
+  {
+    "objectID": "bubble.html",
+    "href": "bubble.html",
+    "title": "1  Bubble plot for ranks",
+    "section": "",
+    "text": "library(Figures)\ndata(df_rank)\nhead(df_rank)\n\n          Variable mean_rank   method  sig rank\n1          Lactate  1.797143 Logistic TRUE    1\n2              Age  3.777143 Logistic TRUE    2\n3       Hematocrit  3.891429 Logistic TRUE    3\n4              BUN  4.588571 Logistic TRUE    4\n5        Anion gap  6.417143 Logistic TRUE    5\n6 Respiration rate  6.588571 Logistic TRUE    6\n\nbubble_for_rank(data = df_rank, y_name = \"Variable\", x_name = \"method\",\n                rank_name = \"mean_rank\", highlight_name = \"sig\")\n\n\n\nbubble_for_rank(data = df_rank,\n                y_name = \"Variable\", x_name = \"method\", rank_name = \"mean_rank\",\n                highlight_name = \"sig\",\n                arrange_rows_by = \"Linear XGBoost (AUC-based)\")\n\n\n\nbubble_for_rank(data = df_rank,\n                y_name = \"Variable\", x_name = \"method\", rank_name = \"mean_rank\",\n                highlight_name = \"sig\",\n                arrange_rows_by = \"Linear XGBoost (AUC-based)\",\n                x_order = c(\"Logistic\", \"Linear XGBoost (loss-based)\",\n                            \"Linear XGBoost (AUC-based)\", \"Linear SVM\"),\n                vline_at = 1.5)"
+  },
+  {
+    "objectID": "bar_hor.html",
+    "href": "bar_hor.html",
+    "title": "2  Horizontal bar plot for variable importance",
+    "section": "",
+    "text": "data(df_compas_shapley_vic, package = \"ShapleyVIC\")\nhead(df_compas_shapley_vic)\n\n  model_id                 var_names sage_value_unadjusted      sage_sd\n1        1                       Age          0.0026693517 0.0003409647\n2        1                      Race         -0.0015550084 0.0004302082\n3        1    Prior criminal history          0.0148514285 0.0004843732\n4        1                    Gender         -0.0022936187 0.0003539186\n5        1 Juvenile criminal history          0.0171023134 0.0004201479\n6        1            Current charge         -0.0009106555 0.0002120055\n  shapley_vic_val perf_metric\n1    0.0026693517    1.003292\n2   -0.0015550084    1.003292\n3    0.0148514285    1.003292\n4   -0.0022936187    1.003292\n5    0.0171023134    1.003292\n6   -0.0009106555    1.003292\n\nlibrary(magrittr)\nlibrary(ggplot2)\ndf_bars <- df_compas_shapley_vic %$% ShapleyVIC::summarise_shapley_vic(\n  val = shapley_vic_val, val_sd = sage_sd, var_names = var_names\n)\ndf_bars %$% Figures::draw_bars(\n  val = val, var_names = Variable, x_lab = \"ShapleyVIC values\"\n) + theme(text = element_text(size = 14))"
+  }
+]

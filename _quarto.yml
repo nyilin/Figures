@@ -1,0 +1,21 @@
+project:
+  type: book
+  output-dir: .
+
+book:
+  title: "A Repository of Publication-Ready Figures"
+  author: "Yilin Ning"
+  date: "today"
+  chapters:
+    - index.qmd
+    - bubble.qmd
+    - bar_hor.qmd
+
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt
+
+
+
